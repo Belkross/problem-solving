@@ -1,6 +1,6 @@
     Algorithm:
 
-    
+    inputs
 
     #start
 
