@@ -10,10 +10,12 @@ function flippingBits(integer: number): number {
 }
 
 function convertTo32Bits(integer: number) {
+	const output = new Array(bitFormat).fill(0)
+
 	const radix2String = integer.toString(2)
-	const bits = radix2String.split("").map((bit) => Number.parseInt(bit, 10))
+	const bits = Array.from(radix2String, (bit) => Number.parseInt(bit, 10))
 
-	while (bits.length < bitFormat) bits.unshift(0)
+	output.splice(bitFormat - bits.length, bits.length, ...bits)
 
-	return bits
+	return output
 }
