@@ -1,5 +1,3 @@
-export {}
-
 function matchingStrings(strings: string[], queries: string[]): number[] {
 	const occurences: number[] = []
 
