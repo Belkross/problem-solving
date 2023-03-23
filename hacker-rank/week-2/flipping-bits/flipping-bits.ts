@@ -1,21 +1,9 @@
 const bitFormat = 32
 
 function flippingBits(integer: number): number {
-	const bits = convertTo32Bits(integer)
-	const flippedBits = bits.map((bit) => (bit === 0 ? 1 : 0))
-
-	const flippedString = flippedBits.join("")
+	const radix2String = integer.toString(2)
+	const radix2StringFilled = radix2String.padStart(bitFormat, "0")
+	const flippedString = radix2StringFilled.replace(/0|1/g, (character) => (character === "0" ? "1" : "0"))
 
 	return Number.parseInt(flippedString, 2)
-}
-
-function convertTo32Bits(integer: number) {
-	const output = new Array(bitFormat).fill(0)
-
-	const radix2String = integer.toString(2)
-	const bits = Array.from(radix2String, (bit) => Number.parseInt(bit, 10))
-
-	output.splice(bitFormat - bits.length, bits.length, ...bits)
-
-	return output
 }
