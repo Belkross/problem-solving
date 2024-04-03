@@ -1,9 +1,11 @@
 {
   "name": "problem-solving",
   "author": "belkross",
+  "type": "module",
   "prettier": "@belkross/prettier-config",
   "scripts": {
     "test": "jest",
+    "test_watch": "jest --watch",
     "prepare": "husky"
   },
   "devDependencies": {
