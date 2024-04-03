@@ -1,0 +1,16 @@
+lockfileVersion: '6.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+devDependencies:
+  '@belkross/prettier-config':
+    specifier: ^1.0.3
+    version: 1.0.3
+
+packages:
+
+  /@belkross/prettier-config@1.0.3:
+    resolution: {integrity: sha512-uDIofeg/rqw+i7mjpJIj+5ndLS2Q1P7KW/SqIhpD/LgzM0FOsrFitt7nluWRqFtdmAx7mdHx3RvgbOBOjRHO+A==}
+    dev: true
