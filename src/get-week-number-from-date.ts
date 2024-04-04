@@ -10,7 +10,7 @@ export function getWeekNumberFromDate(date: DateObject): number {
 
   if (yearInvalid || monthInvalid || dayInvalid) throw new InvalidDateError()
 
-  let amountOfDays = day + amountOfDaysFromMonth(date)
+  let amountOfDays = day + amountOfDaysFromMonthBunch(date)
   let week = 1
   let dayCounter = 0
 
@@ -27,7 +27,7 @@ export function getWeekNumberFromDate(date: DateObject): number {
   return week
 }
 
-export function amountOfDaysFromMonth(date: DateObject) {
+export function amountOfDaysFromMonthBunch(date: DateObject) {
   const { month, year } = date
   const dayPerMonth = getDaysPerMonth(isLeapYear(year))
 

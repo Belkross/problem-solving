@@ -1,7 +1,7 @@
 import {
   getWeekNumberFromDate,
   InvalidDateError,
-  amountOfDaysFromMonth,
+  amountOfDaysFromMonthBunch,
   isLeapYear,
 } from "./get-week-number-from-date.ts"
 
@@ -43,12 +43,12 @@ test("inputed year should be valid", () => {
 })
 
 test("getting the amount of days in a bunch of months", () => {
-  expect(amountOfDaysFromMonth({ day: 1, month: 1, year: NON_LEAP_YEAR })).toBe(0)
-  expect(amountOfDaysFromMonth({ day: 1, month: 2, year: NON_LEAP_YEAR })).toBe(31)
+  expect(amountOfDaysFromMonthBunch({ day: 1, month: 1, year: NON_LEAP_YEAR })).toBe(0)
+  expect(amountOfDaysFromMonthBunch({ day: 1, month: 2, year: NON_LEAP_YEAR })).toBe(31)
 
   //leap year
-  expect(amountOfDaysFromMonth({ day: 1, month: 3, year: NON_LEAP_YEAR })).toBe(59)
-  expect(amountOfDaysFromMonth({ day: 1, month: 3, year: LEAP_YEAR_REGULAR })).toBe(60)
+  expect(amountOfDaysFromMonthBunch({ day: 1, month: 3, year: NON_LEAP_YEAR })).toBe(59)
+  expect(amountOfDaysFromMonthBunch({ day: 1, month: 3, year: LEAP_YEAR_REGULAR })).toBe(60)
 })
 
 test("cases", () => {
