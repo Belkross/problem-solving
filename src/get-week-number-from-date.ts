@@ -56,11 +56,12 @@ function checkDayValidity(date: DateObject): boolean {
   return true
 }
 
-function isLeapYear(year: number) {
+export function isLeapYear(year: number) {
   const isMultipleOf100 = year % 100 === 0
   const isMultipleOf4 = year % 4 === 0
+  const isMultipleOf400 = year % 400 === 0
 
-  return isMultipleOf4 && !isMultipleOf100
+  return (isMultipleOf4 && !isMultipleOf100) || isMultipleOf400
 }
 
 function getDaysPerMonth(isLeapYear: boolean) {
