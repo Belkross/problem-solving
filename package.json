@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "test_watch": "jest --watch",
-    "prepare": "husky"
+    "prepare": "husky",
+    "sandbox": "ts-node --esm ./src/sandbox.ts"
   },
   "devDependencies": {
     "@belkross/commitlint-config": "^1.0.3",
