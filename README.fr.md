@@ -7,10 +7,6 @@ Du pseudo-code, des résolutions de problème en Typescript et de la méthodolog
 Les informations que vous trouverez sur ce dépot sont les conclusions auxquelles je suis arrivé au cours de mon propre
 parcours et ne sont pas pensées pour être des vérités universelles. Pensez à remettre en question le contenu.
 
-# D’où viennent les problèmes ?
-
-Actuellement, je suis le programme "3 month preparation kit" fournit par le site HackerRank
-
 # Pourquoi la rédaction de pseudo-code est-elle une compétence importante ?
 
 Lorsque je commence directement en écrivant du code, il arrive souvent que je progresse dans la résolution du problème
@@ -18,18 +14,20 @@ par tâtonnement. Je ne me suis jamais réellement senti progresser en travailla
 l’intelligence dans la résolution de problème se développe avec la capacité à anticiper les choses et lorsqu’on est seul
 face à son pseudo-code, c’est exactement ce qui se produit.
 
-# Ma méthode et mes astuces
+# Méthode de résolution de problème
 
-## Les valeurs sûres lors de la résolution de problème
+1. décomposer le problème + se demander quel partie du problème est prioritaire
 
-- Prendre le temps de s’approprier l’énoncé
-- Avoir des exemples d’entrées converties en sorties
+1. Exploration du besoin
+   2.1 Se procurer des exemples d’entrée/sorties
+   2.2 Les cas limites
+   2.3 Les cas qui méritent une attention particulière
+   2.4 Précisions sur les entrées sorties
 
 ## Les questions à se poser
 
 - La validité des entrées
 - Les limites des entrées
-- Les corner cases
 - classer les entrées peut-il faciliter la résolution du problème ?
 
 ## Astuces
