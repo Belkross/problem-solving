@@ -1,77 +1,52 @@
-interface IFractionCalculator {
-  add: (firstMember: string, secondMember: string) => string
-  substract: (firstMember: string, secondMember: string) => string
-  multiply: (firstMember: string, secondMember: string) => string
-  divide: (firstMember: string, secondMember: string) => string
-  checkInputsValidity: (firstMember: string, secondMember: string) => void
-  findPGCD: (firstNumber: number, secondNumber: number) => number
-}
+export class Fraction {
+  public readonly numerator: number
+  public readonly denominator: number
 
-export class InvalidInputError extends Error {
-  constructor() {
-    super("Invalid input.")
+  private constructor(numerator: number, denominator?: number) {
+    this.numerator = numerator
+    this.denominator = denominator ?? 1
   }
-}
 
-export class InfiniteFractionError extends Error {
-  constructor() {
-    super("Cannot divide by zero.")
+  get value(): number {
+    return this.numerator / this.denominator
   }
-}
 
-export class FractionCalculator implements IFractionCalculator {
-  add(firstMember: string, secondMember: string): string {
-    this.checkInputsValidity(firstMember, secondMember)
+  /**
+   * The role of a constructor is to initialise properties and not to validate inputs.
+   * That’s why we export the validation process in a static function. Also, we ensure that
+   * Fraction creation is done by this static method with a private constructor
+   */
+  static create(numerator: number, denominator?: number) {
+    if (denominator === 0) throw new InfiniteFractionError()
 
-    const [firstNumerator, firstDenominator] = firstMember.split("/").map((string) => Number(string))
-    const [secondNumerator, secondDenominator] = secondMember.split("/").map((string) => Number(string))
-    let commonDenominator, addedNumerators
+    return new Fraction(numerator, denominator)
+  }
 
-    if (firstNumerator === 0 && secondNumerator === 0) return "0"
-    if (firstNumerator === 0) return `${secondNumerator}/${secondDenominator}`
-    if (secondNumerator === 0) return `${firstNumerator}/${firstDenominator}`
+  public sum(fraction: Fraction): Fraction {
+    if (this.numerator === 0) return fraction
+    if (fraction.numerator === 0) return this
 
-    if (firstDenominator !== secondDenominator) {
-      commonDenominator = firstDenominator * secondDenominator
-      addedNumerators = firstNumerator * secondDenominator + secondNumerator * firstDenominator
-    } else {
-      commonDenominator = firstDenominator
-      addedNumerators = firstNumerator + secondNumerator
+    const bothAreIntegers = this.denominator === 1 && fraction.denominator === 1
+    const bothHaveSameDenominator = this.denominator === fraction.denominator
+
+    if (bothAreIntegers || bothHaveSameDenominator) {
+      return new Fraction(this.numerator + fraction.numerator, this.denominator)
     }
 
-    // s’assurer que la fraction est irréductible
-    const PGCD = this.findPGCD(addedNumerators, commonDenominator)
-    if (PGCD === 1) return `${addedNumerators}/${commonDenominator}`
+    if (this.denominator !== fraction.denominator) {
+      const addedNumerators = this.numerator * fraction.denominator + fraction.numerator * this.denominator
+      const commonDenominator = this.denominator * fraction.denominator
 
-    return `${addedNumerators / PGCD}/${commonDenominator / PGCD}`
+      const PGCD = Fraction.findPGCD(addedNumerators, commonDenominator)
+
+      if (PGCD === 1) return new Fraction(addedNumerators, commonDenominator)
+      else return new Fraction(addedNumerators / PGCD, commonDenominator / PGCD)
+    }
+
+    return this
   }
 
-  substract(firstMember: string, secondMember: string): string {
-    return ""
-  }
-
-  multiply(firstMember: string, secondMember: string): string {
-    return ""
-  }
-
-  divide(firstMember: string, secondMember: string): string {
-    return ""
-  }
-
-  checkInputsValidity(firstMember: string, secondMember: string): void {
-    const [firstNumerator, firstDenominator] = firstMember.split("/").map((string) => Number(string))
-    const [secondNumerator, secondDenominator] = secondMember.split("/").map((string) => Number(string))
-
-    if (firstDenominator === 0 || secondDenominator === 0) throw new InfiniteFractionError()
-
-    const regex = /^-{0,1}\d+\/\d+$/
-    const firstMemberInvalid = regex.test(firstMember) === false
-    const secondMemberInvalid = regex.test(secondMember) === false
-
-    if (firstMemberInvalid || secondMemberInvalid) throw new InvalidInputError()
-  }
-
-  findPGCD(firstNumber: number, secondNumber: number): number {
+  static findPGCD(firstNumber: number, secondNumber: number): number {
     const a = Math.abs(firstNumber)
     const b = Math.abs(secondNumber)
 
@@ -81,12 +56,18 @@ export class FractionCalculator implements IFractionCalculator {
     }
 
     const secondNumberDividers: Array<number> = []
-    for (let i = 1; i <= a; ++i) {
+    for (let i = 1; i <= b; ++i) {
       if (secondNumber % i === 0) secondNumberDividers.push(i)
     }
 
     const commonDividers = firstNumberDividers.filter((divider) => secondNumberDividers.includes(divider))
 
     return commonDividers.at(-1) ?? 1
+  }
+}
+
+export class InfiniteFractionError extends Error {
+  constructor() {
+    super("Cannot divide by 0.")
   }
 }
