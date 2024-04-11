@@ -44,6 +44,12 @@ describe("addition", () => {
   })
 })
 
+describe("substraction", () => {
+  test("two fractions that have the same denominator", () => {
+    expect(Fraction.create(4, 7).substract(Fraction.create(2, 7)).value).toBe(2 / 7)
+  })
+})
+
 describe("find pgcd", () => {
   test("normal case", () => {
     expect(Fraction.findPGCD(45, 75)).toBe(15)

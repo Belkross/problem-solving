@@ -46,6 +46,10 @@ export class Fraction {
     return this
   }
 
+  public substract(fraction: Fraction): Fraction {
+    return this.sum(Fraction.create(-fraction.numerator, fraction.denominator))
+  }
+
   static findPGCD(firstNumber: number, secondNumber: number): number {
     if (secondNumber !== 0) return this.findPGCD(secondNumber, firstNumber % secondNumber)
     else return Math.abs(firstNumber)
