@@ -47,6 +47,7 @@ describe("addition", () => {
 describe("find pgcd", () => {
   test("normal case", () => {
     expect(Fraction.findPGCD(45, 75)).toBe(15)
+    expect(Fraction.findPGCD(21, 15)).toBe(3)
   })
 
   test("pgcd is 1", () => {

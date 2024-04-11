@@ -47,22 +47,8 @@ export class Fraction {
   }
 
   static findPGCD(firstNumber: number, secondNumber: number): number {
-    const a = Math.abs(firstNumber)
-    const b = Math.abs(secondNumber)
-
-    const firstNumberDividers: Array<number> = []
-    for (let i = 1; i <= a; ++i) {
-      if (firstNumber % i === 0) firstNumberDividers.push(i)
-    }
-
-    const secondNumberDividers: Array<number> = []
-    for (let i = 1; i <= b; ++i) {
-      if (secondNumber % i === 0) secondNumberDividers.push(i)
-    }
-
-    const commonDividers = firstNumberDividers.filter((divider) => secondNumberDividers.includes(divider))
-
-    return commonDividers.at(-1) ?? 1
+    if (secondNumber !== 0) return this.findPGCD(secondNumber, firstNumber % secondNumber)
+    else return Math.abs(firstNumber)
   }
 }
 
