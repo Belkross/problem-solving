@@ -20,9 +20,9 @@ face à son pseudo-code, c’est exactement ce qui se produit.
 
 1. Exploration du besoin
    2.1 Se procurer des exemples d’entrée/sorties
-   2.2 Les cas limites
-   2.3 Les cas qui méritent une attention particulière
-   2.4 Précisions sur les entrées sorties
+   2.2 Les cas limites + cas particuliers
+   2.3 Remettre en question les entrées et les sorties
+   2.4 Chercher les sous entendus du client pour qui la définition du problème semble évidente
 
 ## Les questions à se poser
 
